@@ -1,0 +1,31 @@
+{
+  "name": "laravel-application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nbiuk-devops-lab/laravel-application.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/nbiuk-devops-lab/laravel-application/issues"
+  },
+  "homepage": "https://github.com/nbiuk-devops-lab/laravel-application#readme",
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "laravel-vite-plugin": "^2.1.0",
+    "tailwindcss": "^4.1.18",
+    "vite": "^7.3.1"
+  }
+}
