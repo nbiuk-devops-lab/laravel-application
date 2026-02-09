@@ -19,7 +19,6 @@ RUN apk add --no-cache \
     libzip-dev \
     && docker-php-ext-install \
         pdo \
-        pdo_mysql \
         intl \
         mbstring \
         zip \

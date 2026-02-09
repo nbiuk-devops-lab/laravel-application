@@ -14,7 +14,6 @@ The local setup uses these containers:
 
 - **nginx**: serves HTTP on port **8080**
 - **app (php-fpm)**: runs Laravel/PHP
-- **mysql**: database
 - **node (dev-only)**: runs Vite + Tailwind HMR on port **5173**
 
 In production, **node is not required** (assets are built once via `npm run build` in CI / Docker build stage).
@@ -43,14 +42,11 @@ Recommended defaults for local development:
 - `APP_ENV=local`
 - `APP_DEBUG=true`
 
-> If you run MySQL via Docker (recommended), set DB host to the **service name**:
-> `DB_HOST=mysql`
-
 ---
 
 ## 3) Start the containers (dev)
 
-Start everything (nginx + php-fpm + mysql + vite):
+Start everything (nginx + php-fpm + vite):
 
 ```bash
 docker compose up -d --build
@@ -68,20 +64,6 @@ docker compose exec app composer install
 
 ```bash
 docker compose exec app php artisan key:generate
-```
-
----
-
-## 6) Run database migrations
-
-```bash
-docker compose exec app php artisan migrate
-```
-
-(If you have seeders)
-
-```bash
-docker compose exec app php artisan db:seed
 ```
 
 ---
