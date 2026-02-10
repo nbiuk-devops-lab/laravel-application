@@ -4,8 +4,7 @@
 
 - Docker Desktop (or Docker Engine + Compose)
 - Git
-- Node.js 20+ and npm if you want to run Vite on the host instead of the Node container`
-`
+- Node.js 20+ and npm if you want to run Vite on the host instead of the Node container
 ---
 
 ## Project overview
