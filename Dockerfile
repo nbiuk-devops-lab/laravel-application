@@ -34,4 +34,9 @@ COPY . .
 # copy built frontend assets only
 COPY --from=assets /app/public/build ./public/build
 
+# fix Laravel writable directories permissions
+RUN chown -R www-data:www-data \
+    /var/www/html/storage \
+    /var/www/html/bootstrap/cache
+
 CMD ["php-fpm"]
