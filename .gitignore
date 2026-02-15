@@ -5,7 +5,6 @@ docker/nginx/certs
 .env
 .env.backup
 .env.production
-.env.example
 .phpactor.json
 .phpunit.result.cache
 /.nova
