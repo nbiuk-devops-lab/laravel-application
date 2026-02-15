@@ -36,11 +36,6 @@ Copy the example env file and adjust values if needed:
 cp .env.example .env
 ```
 
-Recommended defaults for local development:
-
-- `APP_ENV=local`
-- `APP_DEBUG=true`
-
 ---
 
 ## 3) Start the containers (dev)
