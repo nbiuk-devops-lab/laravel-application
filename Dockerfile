@@ -34,9 +34,14 @@ COPY . .
 # copy built frontend assets only
 COPY --from=assets /app/public/build ./public/build
 
-# fix Laravel writable directories permissions
+# copy entrypoint
+COPY docker/php/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# fix Laravel writable directories permissions (build time fallback)
 RUN chown -R www-data:www-data \
     /var/www/html/storage \
     /var/www/html/bootstrap/cache
 
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["php-fpm"]
