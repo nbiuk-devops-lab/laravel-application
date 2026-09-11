@@ -1,4 +1,5 @@
 FROM node:20-alpine AS assets
+
 WORKDIR /app
 
 COPY package*.json ./
@@ -7,10 +8,10 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
+
 FROM php:8.3-fpm-alpine
 
 RUN apk add --no-cache \
-    nginx \
     bash \
     curl \
     git \
@@ -23,11 +24,11 @@ RUN apk add --no-cache \
     freetype-dev
 
 RUN docker-php-ext-install \
-        pdo \
-        intl \
-        mbstring \
-        zip \
-        opcache
+    pdo_mysql \
+    intl \
+    mbstring \
+    zip \
+    opcache
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
@@ -37,17 +38,19 @@ COPY . .
 
 COPY --from=assets /app/public/build ./public/build
 
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install \
+    --no-dev \
+    --optimize-autoloader \
+    --no-interaction
 
-COPY docker/nginx/nginx.conf /etc/nginx/http.d/default.conf
+COPY --chmod=755 docker/php/entrypoint.sh /entrypoint.sh
 
 RUN chown -R www-data:www-data \
     /var/www/html/storage \
     /var/www/html/bootstrap/cache
 
-EXPOSE 80
-
-CMD ["sh", "-c", "php-fpm -D && nginx -g 'daemon off;'"]
+EXPOSE 9000
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD []
+
+CMD ["php-fpm"]
